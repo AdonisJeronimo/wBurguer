@@ -1,14 +1,28 @@
-import { useCart } from "../../../Hooks/useCart"
-
-import { TableDesktop } from "./TableDesktop"
-
-export function Table(){
-
-  const {cart} = useCart()
-
-  if(cart.length === 0)
-  return <h1>Ops! Parece que você ainda não fez seus pedidos, retorne a pagina inicial e peça já seus lanches! 😋 </h1>
+import { useEffect, useState } from 'react'
+import { EmptyCart } from '../../../components/EmptyCart'
+import { useCart } from '../../../Hooks/useCart'
 
 
-  return <TableDesktop />
+import { TableDesktop } from './TableDesktop'
+import { TableMobile } from './TableMobile'
+
+export function Table() {
+  const { cart } = useCart()
+  const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth)
+
+  useEffect(() => {
+    function updateTableComponentBasedInWindowWidth() {
+      const currentWidth = document.documentElement.clientWidth
+      setWindowWidth(currentWidth)
+    }
+    window.addEventListener('resize', updateTableComponentBasedInWindowWidth)
+
+    return () => {
+      window.removeEventListener('resize', updateTableComponentBasedInWindowWidth)
+    }
+  }, [])
+
+  if (cart.length === 0) return <EmptyCart title='Ops! Parece que você não tem pedidos, peça já!' />
+
+  return windowWidth > 768 ? <TableDesktop /> : <TableMobile />
 }
