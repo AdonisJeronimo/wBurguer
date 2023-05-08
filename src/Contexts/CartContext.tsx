@@ -34,6 +34,7 @@ export function CartProvider ({children}: CartProviderProps ){
   const navigate = useNavigate();
   const [cart, setCart] = useState<Snack[]>(() => {
 
+ //Salvando e recuperando as informações no LocalStorage
     const value = localStorage.getItem(localStorageKey)
       if(value) return JSON.parse(value)
 
@@ -43,6 +44,11 @@ export function CartProvider ({children}: CartProviderProps ){
   function saveCart(items: Snack[]) {
     setCart(items)
     localStorage.setItem(localStorageKey , JSON.stringify(items))
+  }
+
+ //Zerando as informaçõoes do carrinho apos a compra
+  function clearCart(){
+    localStorage.removeItem(localStorageKey)
   }
 
   function addSnackIntoCart(snack: SnackData):void{
@@ -123,7 +129,9 @@ export function CartProvider ({children}: CartProviderProps ){
 
   function payOrder(customer: CustomerData){
     console.log('payOrder', cart, customer)
+
     //chamada de API BackEnd
+    clearCart()
 
   return
   }
