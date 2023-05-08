@@ -2,17 +2,21 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { IMaskInput } from 'react-imask'
 
+import { CustomerData } from '../../Interfaces/CustomerData'
+
 import { Head } from '../../components/Head'
 import { PayOrder } from '../../components/OrderCloseAction/PayOrder'
 import { OrderHeader } from '../../components/OrderHeader'
 
+import { useCart } from '../../Hooks/useCart'
+
 import { FieldValues, schema } from './validationSchema'
 
 import IMask from 'imask'
-
 import { Container, Form, Inner } from './styles'
 
 export default function Payment() {
+  const { payOrder } = useCart()
   const {
     control,
     handleSubmit,
@@ -20,7 +24,7 @@ export default function Payment() {
   } = useForm<FieldValues>({
     resolver: yupResolver(schema),
   })
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log('data', data)
+  const onSubmit: SubmitHandler<FieldValues> = (data) => payOrder(data as CustomerData)
 
   return (
     <Container>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { SnackData } from "../Interfaces/SnackData"
 
 import { snackEmoji } from "../Helpers/snackEmoji"
+import { CustomerData } from "../Interfaces/CustomerData"
 
 interface Snack extends SnackData{
   quantity:number
@@ -18,7 +19,7 @@ interface CartContextProps{
   snackCartIncrement: (snack:Snack ) => void
   snackCartDecrement: (snack:Snack ) => void
   confirmOrder: ( ) => void
-  payOrder: ( ) => void
+  payOrder: ( customer: CustomerData) => void
 }
 
 interface CartProviderProps{
@@ -109,7 +110,10 @@ export function CartProvider ({children}: CartProviderProps ){
 
   //COnfirmar pagamento
 
-  function payOrder(){
+  function payOrder(customer: CustomerData){
+    console.log('payOrder', cart, customer)
+    //chamada de API BackEnd
+
   return
   }
 
