@@ -28,9 +28,16 @@ interface CartProviderProps{
 
 export const CartContext = createContext({} as CartContextProps)
 
+const localStorageKey = '@wburguer:cart'
+
 export function CartProvider ({children}: CartProviderProps ){
   const navigate = useNavigate();
   const [cart, setCart] = useState<Snack[]>([]);
+
+  function saveCart(items: Snack[]) {
+    setCart(items)
+    localStorage.setItem(localStorageKey , JSON.stringify(items))
+  }
 
   function addSnackIntoCart(snack: SnackData):void{
     //Buscar
@@ -48,7 +55,7 @@ export function CartProvider ({children}: CartProviderProps ){
         return item
       })
       toast.success(`Outro(a) ${snackEmoji(snack.snack)} ${snack.name} adicionado aos pedidos!`)
-      setCart(newCart)
+      saveCart(newCart)
 
       return
     }
@@ -59,16 +66,14 @@ export function CartProvider ({children}: CartProviderProps ){
     const newCart = [...cart,newSnack ]
 
     toast.success(`${snackEmoji(snack.snack)} ${snack.name} foi adicionado aos pedidos!`)
-
-
-    setCart(newCart)
+    saveCart(newCart)
   }
 
   //Remover pedido
   function removeSnackFromCart(snack: Snack){
     const newCart = cart.filter((item) => !(item.id === snack.id && item.snack === snack.snack))
 
-    setCart(newCart)
+    saveCart(newCart)
   }
 
 
@@ -90,7 +95,7 @@ export function CartProvider ({children}: CartProviderProps ){
       return item
     })
 
-    setCart(newCart)
+    saveCart(newCart)
   }
 
   //Incrementar item
