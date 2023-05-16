@@ -1,53 +1,80 @@
 {
-  "burgers": [
+   "burgers": [
     {
       "id": 1,
-      "snack": "burguer",
+      "snack": "burger",
       "name": "Mega",
-      "description":
-        "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
+      "description": "O artesanal tamanho família recheado com três carnes suculentas, queijo e bacon.",
       "price": 25.5,
       "image": "https://i.imgur.com/upjIUnG.jpg"
     },
     {
       "id": 2,
-      "snack": "burguer",
+      "snack": "burger",
       "name": "Extra Bacon",
-      "description":
-        "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
-      "price": 27.5,
-      "image": "https://i.imgur.com/upjIUnG.jpg"
+      "description": "Criado para os amantes de bacon, possui em todas as suas camadas bacon bem assado e ainda queijo e carne.",
+      "price": 23.5,
+      "image": "https://i.imgur.com/B4J04AJ.jpg"
+    },
+    {
+      "id": 3,
+      "snack": "burger",
+      "name": "Tradicional",
+      "description": "O simples também é delicioso, principalmente se envolver nossa carne artesanal e queijo.",
+      "price": 12,
+      "image": "https://i.imgur.com/Jz506jB.jpg"
+    },
+    {
+      "id": 4,
+      "snack": "burger",
+      "name": "Big Carne",
+      "description": "Uma carne artesanal de primeira qualidade com 4cm de altura e uma salada completa com alface, cebola, tomate e outros.",
+      "price": 18.0,
+      "image": "https://i.imgur.com/bF8EdBb.jpg"
+    },
+    {
+      "id": 5,
+      "snack": "burger",
+      "name": "Carne dupla",
+      "description": "Já pensou em comer aquele sanduíche com carne dupla e saborosa, recheada com queijo, molho e salada? Então você pensou exatamente nesse hambúrguer.",
+      "price": 20,
+      "image": "https://i.imgur.com/fdEY2kY.jpg"
     }
   ],
 
   "drinks" : [
-      {
-        "id": 1,
-        "snack": "drinks",
-        "name": "Coca-Cola 2L",
-        "description":
-          "blug blug blug blug  ",
-        "price": 12,
-        "image": "https://thumbs.dreamstime.com/b/uma-garrafa-e-um-copo-de-coca-cola-poznan-pol-ago-bebida-refrigerada-carbonizada-fabricada-pela-companhia-com-sede-em-atlanta-156479125.jpg"
-      },
-      {
-        "id": 2,
-        "snack": "drinks",
-        "name": "Suco | Laranja 250ml",
-        "description":
-          "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
-        "price": 6.5,
-        "image": "https://img.freepik.com/fotos-gratis/suco-de-laranja-fresco-no-copo-em-fundo-escuro_1150-45560.jpg?w=740&t=st=1680031764~exp=1680032364~hmac=93d26f7b86d17f37e46229e37561e51221d0227eb3dec6b054af3eaf2da5614d"
-      },
-      {
-        "id": 3,
-        "snack": "drinks",
-        "name": "Suco | Maracuja 250ml ",
-        "description":
-          "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
-        "price": 6,
-        "image": "https://img.freepik.com/fotos-gratis/um-pote-de-suco-de-maracuja-e-maracuja-fresco-cortado-ao-meio-no-chao-escuro_1150-35258.jpg?w=740&t=st=1680031624~exp=1680032224~hmac=d69dc82ab76af77d28136dea094f92556a449a7434576f9f0f1618abaa617e86"
-      }
+        {
+      "id": 1,
+      "snack": "drink",
+      "name": "Coca-Cola 2L",
+      "description": "A tradicional Coca-Cola que a família brasileira adora.",
+      "price": 12,
+      "image": "https://i.imgur.com/Lg3aKhf.jpg"
+    },
+    {
+      "id": 2,
+      "snack": "drink",
+      "name": "Guaraná Antarctica",
+      "description": "O irresistível e saboroso Guaraná Antarctica em sua versão de latinha.",
+      "price": 6.5,
+      "image": "https://i.imgur.com/hOBrOIm.jpg"
+    },
+    {
+      "id": 3,
+      "snack": "drink",
+      "name": "Suco de Abacaxi",
+      "description": "Suco natural de abacaxi com leves incrementos de algumas hortaliças para fortificar sua saúde.",
+      "price": 8,
+      "image": "https://i.imgur.com/VV9qTMh.jpg"
+    },
+    {
+      "id": 4,
+      "snack": "drink",
+      "name": "Suco de Laranja",
+      "description": "Suco natural de laranja para você que é amante dessa fruta.",
+      "price": 8,
+      "image": "https://i.imgur.com/2Lf2gHy.jpg"
+    }
   ],
 
   "desserts" : [
@@ -56,7 +83,7 @@
       "snack": "desserts",
       "name": "Torta - Limão | Unidade",
       "description":
-        "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
+        "A melhor torta de limão que você ira provar!",
       "price": 5,
       "image": "https://img.freepik.com/free-photo/homemade-newyork-cheesecake-with-lemon-mint_114579-10304.jpg?w=360&t=st=1680091172~exp=1680091772~hmac=9972bc3aa971c344d3033f3b538791a9121d5c24cf2fe293879fb1e68f50f85e"
     },
@@ -65,7 +92,7 @@
       "snack": "desserts",
       "name": "Cookies | Unidade",
       "description":
-        "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
+        "O tradicional cookie, que todo mundo ama, com um incrível recheio de doce de leite. ",
       "price": 2.5,
       "image": "https://img.freepik.com/free-photo/chocolate-cookies-with-chocolate-chips_144627-37367.jpg?w=740&t=st=1680091280~exp=1680091880~hmac=9d5c1b39659f05ceeb0d57ccdf5663abe4bbdd2dd40bdc52c293fc795312595a"
     },
@@ -74,7 +101,7 @@
       "snack": "desserts",
       "name": "Coupcakes | Unidade",
       "description":
-        "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
+        "Cupcake fofinho, com receio e cobertura de leite ninho e com confeitos coloridos. ",
       "price": 2.5,
       "image": "https://img.freepik.com/free-photo/closeup-shot-gourmet-cupcakes-country-club-new-jersey_181624-60723.jpg?w=740&t=st=1680091481~exp=1680092081~hmac=5590838134548ee87d524d00407a30b2d2889a0ea335397e820151ffb30ce4d9"
     }
@@ -83,23 +110,76 @@
   "pizzas": [
     {
       "id": 1,
-      "snack": "pizzas",
-      "name": "frango com catupiry",
-      "description":
-        "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
-      "price": 0,
-      "image": "https://www.sabornamesa.com.br/media/k2/items/cache/ada34cd2101afafaba465aad112ee3c1_XL.jpg"
+      "snack": "pizza",
+      "name": "Calabresa",
+      "description": "Pizza recheada com calabresa, cebola, mussarela, orégano e azeitona, tendo uma borda recheada com catupiry.",
+      "price": 25,
+      "image": "https://i.imgur.com/5rjJGkV.jpg"
     },
     {
       "id": 2,
-      "snack": "pizzas",
-      "name": "Calabresa",
-      "description":
-        "blug blug blug blug blug blug blug blug blug blug blug blug blug blug blug ",
-      "price": 0,
-      "image": "https://cdn0.tudoreceitas.com/pt/posts/9/8/3/pizza_calabresa_e_mussarela_4389_600.jpg"
+      "snack": "pizza",
+      "name": "Portuguesa",
+      "description": "Pizza recheada com presunto, mussarela, ovo, cebola, azeitona, orégano, tomate e molho de tomate, tendo uma borda recheada com catupiry.",
+      "price": 28.5,
+      "image": "https://i.imgur.com/WCoyGoI.png"
+    },
+    {
+      "id": 3,
+      "snack": "pizza",
+      "name": "Frango com Catupiry",
+      "description": "Pizza recheada com frango, catupiry e brócolis, tendo uma borda recheada com catupiry.",
+      "price": 24,
+      "image": "https://i.imgur.com/BuXrO8d.jpg"
+    },
+    {
+      "id": 4,
+      "snack": "pizza",
+      "name": "Napolitana",
+      "description": "Pizza recheada com queijo, mussarela, tomate e couve, tendo uma borda recheada com catupiry.",
+      "price": 30,
+      "image": "https://i.imgur.com/u3DfvCE.jpg"
+    },
+    {
+      "id": 5,
+      "snack": "pizza",
+      "name": "Mussarela",
+      "description": "Pizza recheada com mussarela, tendo uma borda recheada com catupiry. ",
+      "price": 20.5,
+      "image": "https://i.imgur.com/kPNXpa0.jpg"
+    },
+    {
+      "id": 6,
+      "snack": "pizza",
+      "name": "Marguerita",
+      "description": "Pizza recheada com calabresa, mussarela, cebola, azeitona e orégano, tendo uma borda recheada com catupiry.",
+      "price": 25.5,
+      "image": "https://i.imgur.com/AsEfsZN.jpg"
+    },
+    {
+      "id": 7,
+      "snack": "pizza",
+      "name": "Brigadeiro com Morango",
+      "description": "Pizza doce recheada com brigadeiro e morango.",
+      "price": 35.0,
+      "image": "https://i.imgur.com/43yC2Ap.jpg"
+    },
+    {
+      "id": 8,
+      "snack": "pizza",
+      "name": "Banana",
+      "description": "Pizza doce recheada com banana e leite condensado.",
+      "price": 33.5,
+      "image": "https://i.imgur.com/Pcrgg1P.jpg"
+    },
+    {
+      "id": 9,
+      "snack": "pizza",
+      "name": "Chocolate",
+      "description": "Pizza doce recheada com chocolate e bolinhas de chocolate.",
+      "price": 30,
+      "image": "https://i.imgur.com/RahAKkH.jpg"
     }
-
   ]
 
 }

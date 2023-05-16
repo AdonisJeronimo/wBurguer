@@ -13,7 +13,7 @@ export const Container = styled.main`
     padding: 2rem 1.875rem;
 
     img {
-      width: 11rem;
+      width: 8rem;
       margin-bottom: 2rem;
     }
 

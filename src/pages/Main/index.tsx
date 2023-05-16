@@ -5,7 +5,7 @@ import { MyOrder } from '../../components/MyOrder'
 
 import { Container } from './styles'
 
-import logoImg from '../../assets/WBurguer-logo-2.png'
+import logoImg from '../../assets/WBurguer-logo-3.png'
 
 export default function Main() {
   return (
