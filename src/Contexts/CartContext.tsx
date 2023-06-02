@@ -124,7 +124,8 @@ export function CartProvider({ children }: CartProviderProps) {
         toast.error('Erro ao processar o pagamento, por favor, tente novamente mais tarde.')
         return
       }
-      toast.success('Pagamento realizado com sucesso!')
+
+      clearCart()
       navigate('/orders/sucess/${response.data.id}')
     } catch (error) {
       console.error(error)
