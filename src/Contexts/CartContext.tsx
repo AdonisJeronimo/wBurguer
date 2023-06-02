@@ -1,154 +1,151 @@
-import { createContext, ReactNode, useState } from "react"
-import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
+import { createContext, ReactNode, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
-import { SnackData } from "../Interfaces/SnackData"
+import { CustomerData } from '../Interfaces/CustomerData'
+import { Snack } from '../Interfaces/Snack'
+import { SnackData } from '../Interfaces/SnackData'
 
-import { snackEmoji } from "../Helpers/snackEmoji"
-import { CustomerData } from "../Interfaces/CustomerData"
+import { snackEmoji } from '../Helpers/snackEmoji'
+import { processCheckout } from '../services/api'
 
-interface Snack extends SnackData{
-  quantity:number
-  subtotal: number
-}
-
-interface CartContextProps{
-  cart:Snack[]
+interface CartContextProps {
+  cart: Snack[]
   addSnackIntoCart: (snack: SnackData) => void
-  removeSnackFromCart: (snack:Snack ) => void
-  snackCartIncrement: (snack:Snack ) => void
-  snackCartDecrement: (snack:Snack ) => void
-  confirmOrder: ( ) => void
-  payOrder: ( customer: CustomerData) => void
+  removeSnackFromCart: (snack: Snack) => void
+  snackCartIncrement: (snack: Snack) => void
+  snackCartDecrement: (snack: Snack) => void
+  confirmOrder: () => void
+  payOrder: (customer: CustomerData) => void
 }
 
-interface CartProviderProps{
+interface CartProviderProps {
   children: ReactNode
 }
 
 export const CartContext = createContext({} as CartContextProps)
 
-const localStorageKey = '@wburguer:cart'
+const localStorageKey = '@Wburguer:cart'
 
-export function CartProvider ({children}: CartProviderProps ){
-  const navigate = useNavigate();
+export function CartProvider({ children }: CartProviderProps) {
+  const navigate = useNavigate()
   const [cart, setCart] = useState<Snack[]>(() => {
-
- //Salvando e recuperando as informações no LocalStorage
     const value = localStorage.getItem(localStorageKey)
-      if(value) return JSON.parse(value)
+    if (value) return JSON.parse(value)
 
     return []
-  });
+  })
 
   function saveCart(items: Snack[]) {
     setCart(items)
-    localStorage.setItem(localStorageKey , JSON.stringify(items))
+    localStorage.setItem(localStorageKey, JSON.stringify(items))
   }
 
- //Zerando as informaçõoes do carrinho apos a compra
-  function clearCart(){
+  function clearCart() {
     localStorage.removeItem(localStorageKey)
   }
 
-  function addSnackIntoCart(snack: SnackData):void{
-    //Buscar
-    const snackExistentInCart = cart.find((item) => item.snack === snack.snack && item.id === snack.id)
+  function addSnackIntoCart(snack: SnackData): void {
+    const snackExistentInCart = cart.find(
+      (item) => item.snack === snack.snack && item.id === snack.id,
+    )
 
-    //Atualizar
-    if(snackExistentInCart){
+    if (snackExistentInCart) {
       const newCart = cart.map((item) => {
-        if(item.id === snack.id){
-          const quantity =  item.quantity + 1
+        if (item.id === snack.id) {
+          const quantity = item.quantity + 1
           const subtotal = item.price * quantity
 
-          return {...item, quantity, subtotal}
+          return { ...item, quantity, subtotal }
         }
+
         return item
       })
-      toast.success(`Outro(a) ${snackEmoji(snack.snack)} ${snack.name} adicionado aos pedidos!`)
+
+      toast.success(`Outro(a) ${snackEmoji(snack.snack)} ${snack.name} adicionado nos pedidos!`)
       saveCart(newCart)
 
       return
     }
 
-    //adicionar
+    const newSnack = { ...snack, quantity: 1, subtotal: snack.price }
+    const newCart = [...cart, newSnack] // push de um array
 
-    const newSnack = {...snack, quantity: 1 , subtotal: snack.price}
-    const newCart = [...cart,newSnack ]
-
-    toast.success(`${snackEmoji(snack.snack)} ${snack.name} foi adicionado aos pedidos!`)
+    toast.success(`${snackEmoji(snack.snack)} ${snack.name} adicionado nos pedidos!`)
     saveCart(newCart)
   }
 
-  //Remover pedido
-  function removeSnackFromCart(snack: Snack){
+  function removeSnackFromCart(snack: Snack) {
     const newCart = cart.filter((item) => !(item.id === snack.id && item.snack === snack.snack))
 
     saveCart(newCart)
   }
 
+  function updateSnackQuantity(snack: Snack, newQuantity: number) {
+    if (newQuantity <= 0) return
 
-  function updateSnackQuantity(snack: Snack, newQuantity:number){
-    if(newQuantity <= 0 ) return
+    const snackExistentInCart = cart.find(
+      (item) => item.id === snack.id && item.snack === snack.snack,
+    )
 
-    const snackExistentInCart = cart.find((item) => item.id === snack.id && item.snack === snack.snack)
+    if (!snackExistentInCart) return
 
-    if(!snackExistentInCart) return
-
-    const newCart =  cart.map((item) => {
-      if(item.id === snackExistentInCart.id && item.snack === snackExistentInCart.snack){
-        return{
+    const newCart = cart.map((item) => {
+      if (item.id === snackExistentInCart.id && item.snack === snackExistentInCart.snack) {
+        return {
           ...item,
           quantity: newQuantity,
           subtotal: item.price * newQuantity,
         }
       }
+
       return item
     })
 
     saveCart(newCart)
   }
 
-  //Incrementar item
-  function snackCartIncrement(snack: Snack){
-    updateSnackQuantity(snack,snack.quantity +1)
+  function snackCartIncrement(snack: Snack) {
+    updateSnackQuantity(snack, snack.quantity + 1)
   }
 
-  //Decrementar item
-  function snackCartDecrement(snack: Snack){
-    updateSnackQuantity(snack,snack.quantity -1)
+  function snackCartDecrement(snack: Snack) {
+    updateSnackQuantity(snack, snack.quantity - 1)
   }
 
-  //Confirmar pedido
-  function confirmOrder(){
-    navigate ('/payment')
+  function confirmOrder() {
+    navigate('/payment')
   }
 
-  //COnfirmar pagamento
-
-  function payOrder(customer: CustomerData){
-    console.log('payOrder', cart, customer)
-
-    //chamada de API BackEnd
-    clearCart()
-
-  return
+  async function payOrder(customer: CustomerData) {
+    try {
+      const response = await processCheckout(cart, customer)
+      if (response.data.status !== 'PAID') {
+        toast.error('Erro ao processar o pagamento, por favor, tente novamente mais tarde.')
+        return
+      }
+      toast.success('Pagamento realizado com sucesso!')
+      navigate('/orders/sucess/${response.data.id}')
+    } catch (error) {
+      console.error(error)
+      toast.error('Erro ao processar o pedido.')
+    }
+    return
   }
 
   return (
     <CartContext.Provider
-    value={{
-      cart,
-      addSnackIntoCart,
-      removeSnackFromCart,
-      snackCartIncrement,
-      snackCartDecrement,
-      confirmOrder,
-      payOrder
-      }}>
+      value={{
+        cart,
+        addSnackIntoCart,
+        removeSnackFromCart,
+        snackCartIncrement,
+        snackCartDecrement,
+        confirmOrder,
+        payOrder,
+      }}
+    >
       {children}
     </CartContext.Provider>
   )
 }
-

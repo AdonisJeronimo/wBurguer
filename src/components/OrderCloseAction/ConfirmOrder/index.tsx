@@ -1,15 +1,19 @@
-import { currencyFormat } from "../../../Helpers/currencyFormat"
-import { useCart } from "../../../Hooks/useCart"
-import { Container } from "../style"
+import { useCart } from '../../../Hooks/useCart'
 
-export function ConfirmOrder(){
-  const {cart, confirmOrder} = useCart()
+import { currencyFormat } from '../../../Helpers/currencyFormat'
 
-  const totalAmount = cart.reduce((acc, item) => (acc += item.subtotal), 0)
+import { Container } from '../style'
 
-  return(
+export function ConfirmOrder() {
+  const { cart, confirmOrder } = useCart()
+
+  const totalAmount = cart.reduce((acc, item) => (acc += Number(item.subtotal)), 0)
+
+  return (
     <Container>
-      <button type="button" onClick={confirmOrder}>Finalizar Pedido</button>
+      <button type='button' onClick={confirmOrder}>
+        Finalizar Pedido
+      </button>
       <span>
         Total <strong>{currencyFormat(totalAmount)}</strong>
       </span>
